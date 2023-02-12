@@ -20,7 +20,45 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+	//const place
+	const cpuDecorationType = vscode.window.createTextEditorDecorationType(
+		{}
+	);
+
+	let activeEditor = vscode.window.activeTextEditor;
+
+
+	function paintCPUDecorations(){
+		let fName : String = "hello.world";
+
+		if (!activeEditor){
+			return;
+		}
+		const cpuDecorationOptions : vscode.DecorationOptions[] =[];
+	
+
+		const text = activeEditor.document.getText();
+		activeEditor.setDecorations(cpuDecorationType,cpuDecorationOptions);
+
+	}
+
+
+
+	vscode.window.onDidChangeActiveTextEditor(
+		editor => {
+
+		}, null, context.subscriptions);
+
+
+
+	vscode.workspace.onDidChangeTextDocument(event => {
+
+	}, null, context.subscriptions);
+
+
+
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
